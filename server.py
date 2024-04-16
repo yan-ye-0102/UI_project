@@ -17,7 +17,7 @@ def home():
 
 @app.route("/quiz/1")
 def quiz1_submit():
-    return render_template("index.html")
+    return render_template("quiz.html")
 
 
 @app.route("/quiz/2")
