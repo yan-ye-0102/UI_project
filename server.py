@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+from helpers import extract_positions
 
 app = Flask(__name__)
 
@@ -19,6 +20,7 @@ def quiz1_submit():
     if request.method == "GET":
         return render_template("quiz1.html")
     else:
+        extract_positions(request)
         return jsonify({"redirect": "/quiz/2"})
 
 
@@ -27,6 +29,8 @@ def quiz2_submit():
     if request.method == "GET":
         return render_template("quiz2.html")
     else:
+        extract_positions(request)
+        
         return jsonify({"redirect": "/quiz/3"})
 
 
