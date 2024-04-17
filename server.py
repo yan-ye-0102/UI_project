@@ -22,7 +22,7 @@ def quiz1_submit():
         return jsonify({"redirect": "/quiz/2"})
 
 
-@app.route("/quiz/2")
+@app.route("/quiz/2", methods=["GET", "POST"])
 def quiz2_submit():
     if request.method == "GET":
         return render_template("quiz2.html")
@@ -30,9 +30,12 @@ def quiz2_submit():
         return jsonify({"redirect": "/quiz/3"})
 
 
-@app.route("/quiz/3")
+@app.route("/quiz/3", methods=["GET", "POST"])
 def quiz3_submit():
-    return render_template("quiz3.html")
+    if request.method == "GET":
+        return render_template("quiz3.html")
+    else:
+        return jsonify({"redirect": "/quiz/result"})
 
 
 @app.route("/quiz/result")
