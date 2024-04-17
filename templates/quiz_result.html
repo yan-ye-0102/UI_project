@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='quiz1.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero" class="text-center">
+    <div class="col-12" style="margin-top: 100px;">
+        <h1>Congratulation! You got {{score}} out of 10 on quizzes!</h1>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='quiz1.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero" class="text-center">
+    <div class="row">
+        <div class="col-12">
+            <h1>QUIZ 2: Drag Players To Correct Position based on ball</h1>
+        </div>
+        <div class="col-2">
+            <img src="{{ url_for('static', filename='green_person.png') }}" class="draggable" id="draggable-1"
+                alt="greenPerson" style="max-width: 100%; height: auto; margin-top: 25px;">
+            <img src="{{ url_for('static', filename='green_person.png') }}" class="draggable" id="draggable-2"
+                alt="greenPerson" style="max-width: 100%; height: auto; margin-top: 25px;">
+            <img src="{{ url_for('static', filename='green_person.png') }}" class="draggable" id="draggable-3"
+                alt="greenPerson" style="max-width: 100%; height: auto; margin-top: 25px;">
+            <img src="{{ url_for('static', filename='green_person.png') }}" class="draggable" id="draggable-4"
+                alt="greenPerson" style="max-width: 100%; height: auto; margin-top: 25px;">
+            <img src="{{ url_for('static', filename='green_person.png') }}" class="draggable" id="draggable-5"
+                alt="greenPerson" style="max-width: 100%; height: auto; margin-top: 25px;">
+        </div>
+        <div class="col-10" id="court_quiz1">
+            <img src="{{ url_for('static', filename='court2_quiz.png') }}" alt="Basketball"
+                style="width: 90%; height: auto; margin-top: 25px;">
+        </div>
+        <div class="col-12">
+            <button class="btn" id="submit">
+                <h1>submit</h1>
+            </button>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function () {
+        $(".draggable").draggable(
+            {
+                cursor: "move",
+                revert: "invalid"
+            }
+        );
+        $("#court_quiz1").droppable({
+            hoverClass: "hoverClass", // add this class when an item is hovered over the area
+            drop: function (event, ui) {
+            }
+        });
+
+        $("#submit").click(function () {
+            var position_1 = $("#draggable-1").position();
+            var position_2 = $("#draggable-2").position();
+            var position_3 = $("#draggable-3").position();
+            var position_4 = $("#draggable-4").position();
+            var position_5 = $("#draggable-5").position();
+            var data = {
+                position_1: {
+                    left: position_1.left,
+                    top: position_1.top
+                },
+                position_2: {
+                    left: position_2.left,
+                    top: position_2.top
+                },
+                position_3: {
+                    left: position_3.left,
+                    top: position_3.top
+                },
+                position_4: {
+                    left: position_4.left,
+                    top: position_4.top
+                },
+                position_5: {
+                    left: position_5.left,
+                    top: position_5.top
+                }
+            };
+            console.log("Sending Position Data:", data);  // Output to console
+
+            // Send data to server
+            $.ajax({
+                url: '/quiz/2',  // Flask route
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (response) {
+                    alert('Position saved! Server responded!');
+                    window.location.href = response.redirect;
+                },
+                error: function () {
+                    alert('Error saving position.');
+                }
+            });
+        });
+
+    });
+
+</script>
+{% endblock %}

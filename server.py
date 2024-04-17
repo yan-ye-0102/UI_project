@@ -1,5 +1,4 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 
 app = Flask(__name__)
 
@@ -15,19 +14,30 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/quiz/1")
+@app.route("/quiz/1", methods=["GET", "POST"])
 def quiz1_submit():
-    return render_template("quiz.html")
+    if request.method == "GET":
+        return render_template("quiz1.html")
+    else:
+        return jsonify({"redirect": "/quiz/2"})
 
 
 @app.route("/quiz/2")
 def quiz2_submit():
-    return render_template("index.html")
+    if request.method == "GET":
+        return render_template("quiz2.html")
+    else:
+        return jsonify({"redirect": "/quiz/3"})
 
 
 @app.route("/quiz/3")
 def quiz3_submit():
-    return render_template("index.html")
+    return render_template("quiz3.html")
+
+
+@app.route("/quiz/result")
+def quiz_result():
+    return render_template("quiz_result.html", score=6)
 
 
 if __name__ == "__main__":
