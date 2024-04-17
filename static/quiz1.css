@@ -24,6 +24,6 @@
     /* Smooth transition for background and shadow */
 }
 
-#court_quiz1 {
-    background-image: url("{{ url_for('static', filename='court1_quiz.png') }}");
+.draggable {
+    z-index: 100;
 }
