@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='quiz1.css')}}">
+{% endblock %}
+
 {% block content %}
 
 <!-- Hero Section -->
@@ -8,20 +12,48 @@
         <div class="col-12">
             <h1>QUIZ 1: Drag Players To Correct Position based on ball</h1>
         </div>
-        <div class="col-1">
-
+        <div class="col-2">
+            <img src="{{ url_for('static', filename='green_person.png') }}" class="draggable" alt="greenPerson"
+                style="max-width: 100%; height: auto; margin-top: 25px;">
+            <img src="{{ url_for('static', filename='green_person.png') }}" class="draggable" alt="greenPerson"
+                style="max-width: 100%; height: auto; margin-top: 25px;">
+            <img src="{{ url_for('static', filename='green_person.png') }}" class="draggable" alt="greenPerson"
+                style="max-width: 100%; height: auto; margin-top: 25px;">
+            <img src="{{ url_for('static', filename='green_person.png') }}" class="draggable" alt="greenPerson"
+                style="max-width: 100%; height: auto; margin-top: 25px;">
+            <img src="{{ url_for('static', filename='green_person.png') }}" class="draggable" alt="greenPerson"
+                style="max-width: 100%; height: auto; margin-top: 25px;">
         </div>
-        <div class="col-11">
-            <img src="{{ url_for('static', filename='basketball.png') }}" alt="Basketball"
-                style="max-width: 100%; height: auto; margin-top: 20px;">
+        <div class="col-10" id="court_quiz1">
+            <img src="{{ url_for('static', filename='court1_quiz.png') }}" alt="Basketball"
+                style="width: 90%; height: auto; margin-top: 25px;">
         </div>
         <div class="col-12">
             <button class="btn" onclick="next()">
-                next
+                <h1>next</h1>
             </button>
         </div>
 
     </div>
 </section>
 
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function () {
+        $(".draggable").draggable(
+            {
+                cursor: "move",
+                revert: "invalid"
+            }
+        );
+        $("#court_quiz1").droppable({
+            hoverClass: "hoverClass", // add this class when an item is hovered over the area
+            drop: function (event, ui) {
+            }
+        });
+    });
+
+</script>
 {% endblock %}

@@ -1,0 +1,29 @@
+.btn {
+    background-color: blue;
+    /* Green background */
+    border: none;
+    /* No borders */
+    color: white;
+    /* White text */
+    padding: 15px 32px;
+    /* Top and bottom padding, left and right padding */
+    text-align: center;
+    /* Center-aligned text */
+    text-decoration: none;
+    /* No underline */
+    display: inline-block;
+    /* Allows setting width and height */
+    font-size: 16px;
+    /* Text size */
+    margin: 4px 2px;
+    /* Margin around the button */
+    margin-top: 25px;
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    /* Smooth transition for background and shadow */
+}
+
+#court_quiz1 {
+    background-image: url("{{ url_for('static', filename='court1_quiz.png') }}");
+}
