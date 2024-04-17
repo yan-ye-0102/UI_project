@@ -42,6 +42,10 @@ def quiz3_submit():
 def quiz_result():
     return render_template("quiz_result.html", score=6)
 
+@app.route("/lesson", methods=["GET"])
+def lesson():
+    return render_template("lesson.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

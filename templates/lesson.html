@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='basketball.js') }}"></script>
+<style>
+  /* Add custom styles here or in styles.css */
+  #basketball-court {
+    position: relative;
+    max-width: 600px; /* Adjust as needed */
+    margin: 20px auto;
+    background: url('{{ url_for("static", filename="lesson_start.png") }}') center center no-repeat;
+    background-size: contain;
+    height: 50vh; /* Adjust the height as needed */
+    }
+  .offensive-player {
+    color: red;
+  }
+  .defensive-player {
+    color: green;
+  }
+  .previous-position{
+    color: lightgray
+  }
+  .position-movement{
+    color:lightgreen
+  }
+  /* You need to position each player with specific top and left values, e.g., */
+  .player1 { top: 10%; left: 30%; }
+  /* Add positions for all players */
+
+  #legend {
+    /* Your styles for the legend */
+  }
+  #player-description {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #212529;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="lesson-container">
+  <h2>Pass to an Offensive Player to See Defense Adjust!</h2>
+  <p> As the ball moves around the offense, the defensive position of each player must change. Click on an offensive player (red) to give them the ball, we will then show you how the defense should react, and why!</p>
+  
+  <div id="basketball-court">
+    <!-- Add buttons below the image -->
+  </div>
+    <div id="player-description"></div>
+    <button class="player-button" id="player-1-button">Pass to Player 1</button>
+    <button class="player-button" id="player-2-button">Pass to Player 2</button>
+    <button class="player-button" id="player-3-button">Pass to Player 3</button>
+    <button class="player-button" id="player-4-button">Pass to Player 4</button>
+    <button class="player-button" id="player-5-button">Pass to Player 5</button>
+  </div>
+
+  <div id="legend">
+    <h3>LEGEND</h3>
+    <p><span class="offensive-player">●</span> Offensive Player</p>
+    <p><span class="defensive-player">●</span> Defensive Player</p>
+    <p><span class="previous-position">●</span> Previous Position</p>
+    <p><span class="position-movement">●</span> Player Movement</p>
+  </div>
+</div>
+
+{% endblock %}
