@@ -63,5 +63,10 @@ def lesson():
     return render_template("lesson.html")
 
 
+
+@app.route("/combined-setup")
+def combined_setup():
+    return render_template("combined_setup.html")
+
 if __name__ == "__main__":
     app.run(debug=True)

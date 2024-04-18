@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <style>
+        .setup-section {
+            display: none;
+
+        }
+
+        .setup-section.active {
+            display: block; /
+        }
+
+        .setup-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 600px;
+            height: auto;
+        }
+
+        #next-button {
+            margin-top: 20px;
+        }
+
+
+        #legend {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #212529;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 10px;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .offensive-player-image {
+            background-image: url('{{ url_for('static', filename='red_person.png') }}');
+        }
+
+        .defensive-player-image {
+            background-image: url('{{ url_for('static', filename='green_person.png') }}');
+        }
+
+        .offensive-player {
+            background-color: red;
+        }
+
+        .defensive-player {
+            background-color: green;
+        }
+    </style>
+    <script src="{{ url_for('static', filename='basketball.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="setup-container">
+
+        <!-- 2-3 Zone Setup Section -->
+        <section id="two-three-zone-setup" class="setup-section active">
+            <!-- Content for 2-3 Zone Setup -->
+            <h2>2-3 Zone Setup</h2>
+            <p>Let’s start with the basics:</p>
+            <ul>
+                <li>The base starting position of the 2-3 zone starts with two defensive players at the right and left elbows of the paint.</li>
+                <li>Three players should be at the bottom aligned left, center, right in the key along the blocks.</li>
+            </ul>
+            <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen.png') }}" alt="2-3 Zone Setup" class="setup-image img-fluid">
+        </section>
+
+        <!-- Offensive Setup Section -->
+        <section id="offensive-setup" class="setup-section">
+            <!-- Content for Offensive Setup -->
+            <h2>Offensive Setup</h2>
+            <p>Now let’s add 5 offensive players, we can start with one of the most common offensive setups, with five players
+                on the outside of the three point line!</p>
+            <img src="{{ url_for('static', filename='2-3_Zone_Setup_Offen.png') }}" alt="Offensive Setup" class="setup-image img-fluid">
+        </section>
+
+        <!-- Next Button -->
+        <button id="previous-button" class="btn btn-secondary" style="display: none;">Previous</button>
+        <button id="next-button" class="btn btn-primary">Next</button>
+
+        <!-- Legend -->
+        <div id="legend">
+            <h3>LEGEND</h3>
+            <div class="legend-item">
+                <span class="legend-color defensive-player-image"></span>
+                Defensive Player
+            </div>
+            <div class="legend-item">
+                <span class="legend-color offensive-player-image"></span>
+                Offensive Player
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function() {
+            var currentSection = "#two-three-zone-setup"; // Start with the first section
+
+            $('#next-button').click(function() {
+                // Toggle between sections
+                if (currentSection === "#two-three-zone-setup") {
+                    $(currentSection).removeClass('active');
+                    currentSection = "#offensive-setup";
+                    $(currentSection).addClass('active');
+                    $('#next-button').text('Start Lesson'); // Change button text on last setup page
+                } else {
+                    // Redirect to lesson page when done with setup
+                    window.location.href = "{{ url_for('lesson') }}";
+                }
+            });
+        });
+    </script>
+{% endblock %}
