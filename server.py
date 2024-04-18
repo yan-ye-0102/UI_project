@@ -1,14 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from helpers import extract_positions
+from helpers import extract_positions, get_final_score
 
 app = Flask(__name__)
-
-quiz1_answer = []
-
-quiz2_answer = []
-
-quiz3_answer = []
-
 
 answers_data = []
 
@@ -55,7 +48,9 @@ def quiz4_submit():
 
 @app.route("/quiz/result")
 def quiz_result():
-    return render_template("quiz_result.html", score=6)
+    final_score = get_final_score(answers_data)
+    print(final_score)
+    return render_template("quiz_result.html", score=final_score)
 
 @app.route("/lesson", methods=["GET"])
 def lesson():
