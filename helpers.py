@@ -6,3 +6,8 @@ def extract_positions(request):
     # 'position_4': {'left': 45, 'top': 375}, 
     # 'position_5': {'left': 45, 'top': 500}}
     print(request.json)
+    return request.json
+
+
+def calculate_direction_with_positions(positions):
+    pass

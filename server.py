@@ -10,6 +10,8 @@ quiz2_answer = []
 quiz3_answer = []
 
 
+answers_data = []
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -39,6 +41,15 @@ def quiz3_submit():
     if request.method == "GET":
         return render_template("quiz3.html")
     else:
+        extract_positions(request)
+        return jsonify({"redirect": "/quiz/4"})
+
+@app.route("/quiz/4", methods=["GET", "POST"])
+def quiz4_submit():
+    if request.method == "GET":
+        return render_template("quiz4.html")
+    else:
+        extract_positions(request)
         return jsonify({"redirect": "/quiz/result"})
 
 

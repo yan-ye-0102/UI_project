@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='quiz1.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero" class="text-center">
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quiz 6</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+
+            .quiz-container {
+                margin: 20px;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+
+            .question {
+                margin-bottom: 10px;
+            }
+
+            .answers {
+                list-style: none;
+                padding: 0;
+            }
+
+            .answers li {
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="quiz-container">
+            <div id="quiz" class="quiz">
+                <h2>QUIZ 6</h2>
+                <div class="question" id="question">Which side covers the ball when the PG covers the ball</div>
+                <ul class="answers">
+                    <li><input type="radio" name="answer" value="a" id="a"> <label for="a">Left</label></li>
+                    <li><input type="radio" name="answer" value="b" id="b"> <label for="b">Right</label></li>
+                    <li><input type="radio" name="answer" value="c" id="c"> <label for="c">Depends on which hand the PG
+                            is strongest with (right vs left handed)</label></li>
+                </ul>
+                <button onclick="checkAnswer()">Submit</button>
+                <div id="result"></div>
+            </div>
+        </div>
+
+
+    </body>
+
+    </html>
+
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    function checkAnswer() {
+        // Replace 'c' with the correct answer's value
+        var correctAnswer = 'c';
+        var selectedAnswer = $('input[name="answer"]:checked').val();
+        
+        $.ajax({
+            url: '/quiz/4', // The endpoint where you're sending the POST request
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ answer: selectedAnswer }),
+            success: function (response) {
+                // Handle success response
+                console.log(response);
+                $('#result').text("Answer submitted!");
+            },
+            error: function (xhr, status, error) {
+                // Handle errors here
+                console.log("Error: " + error);
+                $('#result').text("Error submitting answer.");
+            }
+        });
+    }
+    
+</script>
+{% endblock %}
