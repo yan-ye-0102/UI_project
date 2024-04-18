@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from helpers import extract_positions, get_final_score
+from helpers import extract_positions, get_final_score, calculate_direction_with_positions
 
 app = Flask(__name__)
 
-answers_data = []
+answers_data = [0]*4
 
 @app.route("/")
 def home():
@@ -15,7 +15,9 @@ def quiz1_submit():
     if request.method == "GET":
         return render_template("quiz1.html")
     else:
-        extract_positions(request)
+        positions = extract_positions(request)
+        distance, direction = calculate_direction_with_positions(positions)
+        answers_data[0] = [distance, direction]
         return jsonify({"redirect": "/quiz/2"})
 
 
@@ -24,8 +26,9 @@ def quiz2_submit():
     if request.method == "GET":
         return render_template("quiz2.html")
     else:
-        extract_positions(request)
-        
+        positions = extract_positions(request)
+        distance, direction = calculate_direction_with_positions(positions)
+        answers_data[1] = [distance, direction]
         return jsonify({"redirect": "/quiz/3"})
 
 
@@ -34,7 +37,9 @@ def quiz3_submit():
     if request.method == "GET":
         return render_template("quiz3.html")
     else:
-        extract_positions(request)
+        positions = extract_positions(request)
+        distance, direction = calculate_direction_with_positions(positions)
+        answers_data[2] = [distance, direction]
         return jsonify({"redirect": "/quiz/4"})
 
 @app.route("/quiz/4", methods=["GET", "POST"])
@@ -42,7 +47,8 @@ def quiz4_submit():
     if request.method == "GET":
         return render_template("quiz4.html")
     else:
-        extract_positions(request)
+        answer = request.json["answer"]
+        answers_data[3] = answer
         return jsonify({"redirect": "/quiz/result"})
 
 

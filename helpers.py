@@ -12,7 +12,9 @@ def extract_positions(request):
 
 
 def calculate_direction_with_positions(positions):
-    pass
+    # calculate the absolute distance and direction to the pg
+    distance, direction = positions[0], positions[1]
+    return distance, direction
 
 
 def get_final_score(answers):
