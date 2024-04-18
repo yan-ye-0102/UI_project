@@ -55,7 +55,7 @@ def quiz4_submit():
 @app.route("/quiz/result")
 def quiz_result():
     final_score = get_final_score(answers_data)
-    print(final_score)
+    print(answers_data)
     return render_template("quiz_result.html", score=final_score)
 
 @app.route("/lesson", methods=["GET"])

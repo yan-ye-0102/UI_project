@@ -1,4 +1,4 @@
-CORRECT_ANSWERS = ["c"]
+CORRECT_ANSWERS = ["c"]*5
 
 def extract_positions(request):
     # format is in 
@@ -13,14 +13,14 @@ def extract_positions(request):
 
 def calculate_direction_with_positions(positions):
     # calculate the absolute distance and direction to the pg
-    distance, direction = positions[0], positions[1]
+    distance, direction = positions["position_1"], positions["position_2"]
     return distance, direction
 
 
 def get_final_score(answers):
     final_score = 0
     for i, answer in enumerate(answers):
-        if answer[i] == CORRECT_ANSWERS[i]:
+        if answer == CORRECT_ANSWERS[i]:
             final_score += 2.5
 
     return final_score
