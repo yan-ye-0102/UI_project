@@ -92,6 +92,7 @@
                 data: JSON.stringify(data),
                 success: function (response) {
                     alert('Position saved! Server responded!');
+                    console.log(response.redirect);
                     window.location.href = response.redirect;
                 },
                 error: function () {

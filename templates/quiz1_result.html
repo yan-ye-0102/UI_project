@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='quiz1.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero" class="text-center">
+    <div class="row">
+        <div class="col-12">
+            <h1>QUIZ 1 ANSWER</h1>
+        </div>
+        <div class="col-12">
+            <img src="{{ url_for('static', filename='answer_1.png') }}" alt="Basketball"
+                style="width: 90%; height: auto; margin-top: 25px;">
+        </div>
+        <div class="col-12">
+            <button class="btn" id="next">
+                <h1>next</h1>
+            </button>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function () {
+        $("#next").click(function () {
+            window.location.href = "/quiz/2";
+        });
+    });
+
+</script>
+{% endblock %}

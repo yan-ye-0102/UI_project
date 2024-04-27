@@ -18,8 +18,11 @@ def quiz1_submit():
         positions = extract_positions(request)
         distance, direction = calculate_direction_with_positions(positions)
         answers_data[0] = [distance, direction]
-        return jsonify({"redirect": "/quiz/2"})
+        return jsonify({"redirect": "/quiz/1/result"})
 
+@app.route("/quiz/1/result", methods=["GET"])
+def quiz1_result():
+    return render_template("quiz1_result.html")
 
 @app.route("/quiz/2", methods=["GET", "POST"])
 def quiz2_submit():
@@ -29,8 +32,11 @@ def quiz2_submit():
         positions = extract_positions(request)
         distance, direction = calculate_direction_with_positions(positions)
         answers_data[1] = [distance, direction]
-        return jsonify({"redirect": "/quiz/3"})
+        return jsonify({"redirect": "/quiz/2/result"})
 
+@app.route("/quiz/2/result", methods=["GET"])
+def quiz2_result():
+    return render_template("quiz2_result.html")
 
 @app.route("/quiz/3", methods=["GET", "POST"])
 def quiz3_submit():
@@ -40,7 +46,11 @@ def quiz3_submit():
         positions = extract_positions(request)
         distance, direction = calculate_direction_with_positions(positions)
         answers_data[2] = [distance, direction]
-        return jsonify({"redirect": "/quiz/4"})
+        return jsonify({"redirect": "/quiz/3/result"})
+
+@app.route("/quiz/3/result", methods=["GET"])
+def quiz3_result():
+    return render_template("quiz3_result.html")
 
 @app.route("/quiz/4", methods=["GET", "POST"])
 def quiz4_submit():
