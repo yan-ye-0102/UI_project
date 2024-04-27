@@ -55,6 +55,7 @@
                 // Handle success response
                 console.log(response);
                 $('#result').text("Answer submitted!");
+                alert('Correct Answer is C.');
                 window.location.href = response.redirect;
             },
             error: function (xhr, status, error) {
