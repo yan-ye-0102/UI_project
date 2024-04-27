@@ -5,7 +5,7 @@ CORRECT_ANSWER = [
     "c",
 ]
 
-THRETHOLD = 1000
+THRETHOLD = 3000
 
 
 def extract_positions(request):
