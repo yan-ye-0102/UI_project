@@ -22,6 +22,6 @@ $(document).ready(function() {
         // Construct the filename for the corresponding image
         var imageUrl = '/static/pass_to_player_' + playerNumber + '.png';
         // Swap out the image with the updated one
-        $('#basketball-court').css('background-image', 'url("' + imageUrl + '")');
+        $('#basketball-court').attr('src', imageUrl);
     });
 });
