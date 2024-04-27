@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
-from helpers import extract_positions, get_final_score, calculate_direction_with_positions
+from flask import Flask, render_template, request, jsonify
+from helpers import extract_positions, get_final_score
 
 app = Flask(__name__)
 
@@ -16,8 +16,7 @@ def quiz1_submit():
         return render_template("quiz1.html")
     else:
         positions = extract_positions(request)
-        distance, direction = calculate_direction_with_positions(positions)
-        answers_data[0] = [distance, direction]
+        answers_data[0] = positions
         return jsonify({"redirect": "/quiz/1/result"})
 
 @app.route("/quiz/1/result", methods=["GET"])
@@ -30,8 +29,7 @@ def quiz2_submit():
         return render_template("quiz2.html")
     else:
         positions = extract_positions(request)
-        distance, direction = calculate_direction_with_positions(positions)
-        answers_data[1] = [distance, direction]
+        answers_data[1] = positions
         return jsonify({"redirect": "/quiz/2/result"})
 
 @app.route("/quiz/2/result", methods=["GET"])
@@ -44,8 +42,7 @@ def quiz3_submit():
         return render_template("quiz3.html")
     else:
         positions = extract_positions(request)
-        distance, direction = calculate_direction_with_positions(positions)
-        answers_data[2] = [distance, direction]
+        answers_data[2] = positions
         return jsonify({"redirect": "/quiz/3/result"})
 
 @app.route("/quiz/3/result", methods=["GET"])
