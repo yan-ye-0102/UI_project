@@ -20,7 +20,7 @@
 
         .setup-image {
             display: block;
-            max-width: 600px;
+            max-width: 400px;
             height: auto;
             margin-bottom: 20px;
         }
@@ -68,6 +68,12 @@
         #next-button, #previous-button {
             margin-top: 20px;
             margin-right: 10px;
+        }     
+        #imagesblock {
+            display: flex; /* Ensure images are displayed in a row */
+            justify-content: center; /* Center align images horizontally */
+            align-items: flex-start; /* Align images to the top */
+            margin-right: 10;
         }
     </style>
     <script src="{{ url_for('static', filename='basketball.js') }}"></script>
@@ -76,7 +82,26 @@
 {% block content %}
     <div class="setup-container">
 
-        <!-- Legend -->
+
+        <!-- 2-3 Zone Setup Section -->
+        <section id="two-three-zone-setup" class="setup-section active">
+            <h2>Let’s start with the basics: 2-3 Zone Setup</h2>
+            <ul>
+                (2) The base starting position of the 2-3 zone starts with two defensive players at the right and left elbows of the paint.
+                <ul>
+                    <li>These two players are responsible for defending the perimeter and covering the top wings out to the three point line.</li>
+                </ul>
+                (3) Three players should be at the bottom aligned left, center, right in the key along the blocks.
+                <ul>
+                    <li>The player on the bottom left and right are responsible for stopping baseline drives and closing out on corner shooters.They also need to help inside against post plays and rebound effectively</li>
+                    <li>The middle player plays in front of the basket protecting the paint and being vigilant defending against cuts, post-ups, and rebounds</li>
+                </ul>
+            </ul>
+            <div id="imagesblock">
+                <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen.png') }}" alt="2-3 Zone Setup" class="setup-image img-fluid">
+                <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen_2.png') }}" alt="2-3 Zone Setup 2" class="setup-image img-fluid">
+            </div>
+         <!-- Legend -->
         <div id="legend">
             <h3>LEGEND</h3>
             <div class="legend-item">
@@ -88,16 +113,6 @@
                 Offensive Player
             </div>
         </div>
-
-        <!-- 2-3 Zone Setup Section -->
-        <section id="two-three-zone-setup" class="setup-section active">
-            <h2>2-3 Zone Setup</h2>
-            <p>Let’s start with the basics:</p>
-            <ul>
-                <li>The base starting position of the 2-3 zone starts with two defensive players at the right and left elbows of the paint.</li>
-                <li>Three players should be at the bottom aligned left, center, right in the key along the blocks.</li>
-            </ul>
-            <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen.png') }}" alt="2-3 Zone Setup" class="setup-image img-fluid">
         </section>
 
         <!-- Offensive Setup Section -->
