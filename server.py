@@ -67,13 +67,16 @@ def quiz_result():
 
 @app.route("/lesson", methods=["GET"])
 def lesson():
-    return render_template("lesson.html")
+    return render_template("lesson.html", show_lesson_nav=True)
 
 
 
 @app.route("/combined-setup")
 def combined_setup():
-    return render_template("combined_setup.html")
+    return render_template("combined_setup.html", show_lesson_nav=True)
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+

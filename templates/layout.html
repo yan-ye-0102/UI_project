@@ -1,41 +1,49 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:,">
 
-    <!-- jquery -->
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
-    <title>Sports Trivia Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <title>Basketball 2-3 Zone Instructions</title>
 
     {% block head %}
     {% endblock %}
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">Basketball 2-3 Zone Instructions</a>
+        <a class="navbar-brand" href="/quiz/1">Quiz</a>
+    </div>
+</nav>
+
+{% if show_lesson_nav %}
+    <!-- Lesson-specific Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e9ecef;">
         <div class="container">
-            <a class="navbar-brand" href="/">Basketball 2-3 Zone Instructions</a>
-            <a class="navbar-brand" href="/quiz/1">Quiz</a>
+            <a class="nav-item nav-link text-dark" href="/combined-setup" id="nav-zone-setup">2-3 Zone Setup</a>
+            <a class="nav-item nav-link text-dark" href="/combined-setup#offensive-setup" id="nav-offensive-setup">Offensive Setup</a>
+            <a class="nav-item nav-link text-dark" href="/lesson" id="nav-lesson">Ball Passing Demo</a>
         </div>
     </nav>
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-    </div>
 
-    {% block script %}
+{% endif %}
+
+<div class="container">
+    {% block content %}
     {% endblock %}
+</div>
 
+{% block script %}
+{% endblock %}
 </body>
-
 </html>
+

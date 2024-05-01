@@ -130,3 +130,11 @@
     border-radius: 50%;
     transition: background-color 0.3s ease-in-out;
 }
+
+.navbar-light.bg-secondary {
+    background-color: #f8f9fa!important; /* Light grey background for lesson nav */
+}
+
+.nav-item .nav-link {
+    color: #000000 !important; /* Force text color to black */
+}
