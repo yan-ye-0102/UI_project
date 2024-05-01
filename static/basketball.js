@@ -24,4 +24,49 @@ $(document).ready(function() {
         // Swap out the image with the updated one
         $('#basketball-court').attr('src', imageUrl);
     });
+
+    
+    var playerClicks = { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0 }; // Tracks the number of clicks per player
+    var totalPlayers = 5;
+    var requiredClicksPerPlayer = 2;
+    var totalClicksRequired = totalPlayers * requiredClicksPerPlayer; // Total clicks required for full progression
+
+    $('.player-button').click(function() {
+        var playerNumber = $(this).attr('id').split('-')[1];
+
+        // Increment the click count for the clicked player if it hasn't reached the maximum required clicks
+        if (playerClicks[playerNumber] < requiredClicksPerPlayer) {
+            playerClicks[playerNumber]++;
+        }
+
+        // Update description and image
+        $('#player-description').text(descriptions[playerNumber]);
+        $('#basketball-court').attr('src', '/static/pass_to_player_' + playerNumber + '.png');
+
+        // Update the progress bar
+        updateProgressBar();
+    });
+
+    function updateProgressBar() {
+        var totalClicksMade = 0;
+
+        // Sum all clicks made
+        Object.values(playerClicks).forEach(function(clicks) {
+            totalClicksMade += clicks;
+        });
+
+        var progressPercentage = (totalClicksMade / totalClicksRequired) * 100;
+        $('.progress-bar-fill').css('width', progressPercentage + '%');
+
+        // Update completed steps visually based on each click
+        var completedSteps = Math.floor(totalClicksMade * 12 / totalClicksRequired);
+        $('.progress-step').removeClass('completed');
+        $('.progress-step').slice(0, completedSteps).addClass('completed');
+    }
+
+    // Event handlers for 'next' and 'previous' buttons...
+
+    updateProgressBar(); // Initial update when page loads
+
+
 });

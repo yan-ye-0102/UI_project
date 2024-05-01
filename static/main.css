@@ -97,3 +97,36 @@
 #basketball-court {
     flex: 1; /* Let the basketball court fill the remaining space */
 }
+
+.progress-bar-container {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.progress-bar {
+    background-color: #eee;
+    height: 20px;
+    border-radius: 10px;
+}
+
+.progress-bar-fill {
+    background-color: blue;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+}
+
+.progress-bar-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: -25px;
+}
+
+.progress-step {
+    width: 15px;
+    height: 15px;
+    background-color: #ccc;
+    border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
+}
