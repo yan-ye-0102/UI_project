@@ -3,7 +3,8 @@ from helpers import extract_positions, get_final_score
 
 app = Flask(__name__)
 
-answers_data = [0]*4
+answers_data = [0] * 4
+
 
 @app.route("/")
 def home():
@@ -19,9 +20,11 @@ def quiz1_submit():
         answers_data[0] = positions
         return jsonify({"redirect": "/quiz/1/result"})
 
+
 @app.route("/quiz/1/result", methods=["GET"])
 def quiz1_result():
     return render_template("quiz1_result.html")
+
 
 @app.route("/quiz/2", methods=["GET", "POST"])
 def quiz2_submit():
@@ -32,9 +35,11 @@ def quiz2_submit():
         answers_data[1] = positions
         return jsonify({"redirect": "/quiz/2/result"})
 
+
 @app.route("/quiz/2/result", methods=["GET"])
 def quiz2_result():
     return render_template("quiz2_result.html")
+
 
 @app.route("/quiz/3", methods=["GET", "POST"])
 def quiz3_submit():
@@ -45,9 +50,11 @@ def quiz3_submit():
         answers_data[2] = positions
         return jsonify({"redirect": "/quiz/3/result"})
 
+
 @app.route("/quiz/3/result", methods=["GET"])
 def quiz3_result():
     return render_template("quiz3_result.html")
+
 
 @app.route("/quiz/4", methods=["GET", "POST"])
 def quiz4_submit():
@@ -65,18 +72,20 @@ def quiz_result():
     print(answers_data)
     return render_template("quiz_result.html", score=final_score)
 
+
 @app.route("/lesson", methods=["GET"])
 def lesson():
     return render_template("lesson.html", show_lesson_nav=True)
-
 
 
 @app.route("/combined-setup")
 def combined_setup():
     return render_template("combined_setup.html", show_lesson_nav=True)
 
+@app.route("/connection")
+def connection():
+    return render_template("connection.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='basketball.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero">
+    <div class="row">
+        <div class="col-12">
+            <h1>How To Run A 2-3 Zone</h1>
+            <p>Click here to go to Quiz!</p>
+            <a href="{{ url_for('quiz1_submit') }}" class="btn btn-primary ml-auto">Quiz</a>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

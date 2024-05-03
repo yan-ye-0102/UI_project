@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // Define descriptions for each player
     var descriptions = {
         '1': 'When the leftmost offensive player has the ball, the left wing defender should step out to apply pressure, while the point guard shifts slightly towards the left to provide support. The other defenders in the zone should adjust their positions to maintain coverage and prevent easy passing lanes to the interior.',
@@ -9,29 +9,29 @@ $(document).ready(function() {
     };
 
     // Function to handle when a player button is clicked
-    $('.player-button').click(function() {
+    $('.player-button').click(function () {
         // Get the player number from the clicked button's ID
         var playerNumber = $(this).attr('id').split('-')[1]; // Assuming IDs are in the format "playerX-button"
-        
+
         // Get the corresponding description for the player
         var description = descriptions[playerNumber];
-        
+
         // Update the text below the player buttons with the description
         $('#player-description').text(description);
-        
+
         // Construct the filename for the corresponding image
         var imageUrl = '/static/pass_to_player_' + playerNumber + '.png';
         // Swap out the image with the updated one
         $('#basketball-court').attr('src', imageUrl);
     });
 
-    
+
     var playerClicks = { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0 }; // Tracks the number of clicks per player
     var totalPlayers = 5;
     var requiredClicksPerPlayer = 2;
     var totalClicksRequired = totalPlayers * requiredClicksPerPlayer; // Total clicks required for full progression
 
-    $('.player-button').click(function() {
+    $('.player-button').click(function () {
         var playerNumber = $(this).attr('id').split('-')[1];
 
         // Increment the click count for the clicked player if it hasn't reached the maximum required clicks
@@ -51,7 +51,7 @@ $(document).ready(function() {
         var totalClicksMade = 0;
 
         // Sum all clicks made
-        Object.values(playerClicks).forEach(function(clicks) {
+        Object.values(playerClicks).forEach(function (clicks) {
             totalClicksMade += clicks;
         });
 
@@ -62,6 +62,11 @@ $(document).ready(function() {
         var completedSteps = Math.floor(totalClicksMade * 12 / totalClicksRequired);
         $('.progress-step').removeClass('completed');
         $('.progress-step').slice(0, completedSteps).addClass('completed');
+
+        console.log(totalClicksMade);
+        if (totalClicksMade == 10) {
+            window.location.href = "/connection";
+        }
     }
 
     // Event handlers for 'next' and 'previous' buttons...
