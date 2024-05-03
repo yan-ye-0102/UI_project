@@ -2,52 +2,6 @@
 
 {% block head %}
     <style>
-        .setup-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            margin-top: 20px;
-        }
-
-        .setup-section {
-            display: none;
-        }
-
-        .setup-section.active {
-            display: block;
-            flex: 1;
-        }
-
-        .setup-image {
-            display: block;
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-
-        #legend {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            color: #212529;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .legend-color {
-            width: 20px;
-            height: 20px;
-            display: inline-block;
-            margin-right: 10px;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
 
         .offensive-player-image {
             background-image: url('{{ url_for('static', filename='red_person.png') }}');
@@ -57,34 +11,14 @@
             background-image: url('{{ url_for('static', filename='green_person.png') }}');
         }
 
-        .offensive-player {
-            background-color: red;
-        }
-
-        .defensive-player {
-            background-color: green;
-        }
-
-        #next-button, #previous-button {
-            margin-top: 20px;
-            margin-right: 10px;
-        }     
-        #imagesblock {
-            display: flex; /* Ensure images are displayed in a row */
-            justify-content: center; /* Center align images horizontally */
-            align-items: flex-start; /* Align images to the top */
-            margin-right: 10;
-        }
     </style>
     <script src="{{ url_for('static', filename='basketball.js') }}"></script>
 {% endblock %}
 
 {% block content %}
-    <div class="setup-container">
-
-
+    <div class="lesson-container">
         <!-- 2-3 Zone Setup Section -->
-        <section id="two-three-zone-setup" class="setup-section active">
+        <section id="two-three-zone-setup" class="setup-section">
             <h2>Let’s start with the basics: 2-3 Zone Setup</h2>
             <ul>
                 (2) The base starting position of the 2-3 zone starts with two defensive players at the right and left elbows of the paint.
@@ -97,11 +31,34 @@
                     <li>The middle player plays in front of the basket protecting the paint and being vigilant defending against cuts, post-ups, and rebounds</li>
                 </ul>
             </ul>
-            <div id="imagesblock">
-                <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen.png') }}" alt="2-3 Zone Setup" class="setup-image img-fluid">
-                <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen_2.png') }}" alt="2-3 Zone Setup 2" class="setup-image img-fluid">
+            <div id="imagesblock" style="position: relative;">
+                <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen.png') }}" alt="2-3 Zone Setup" class="setup-image img-fluid" id="first-image">
+                <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen_2.png') }}" alt="2-3 Zone Setup 2" class="setup-image img-fluid" id="second-image" style="display: none;">
+                <button id="next-button" style="position: absolute; right: 0; bottom: 0;">Next</button>
             </div>
-         <!-- Legend -->
+
+
+        </section>
+
+        <!-- Offensive Setup Section -->
+        <section id="offensive-setup" class="setup-section">
+            <h2>Offensive Setup</h2>
+            <P>Now let’s add 5 offensive players, we can start with one of the most common offensive setups, with five players on the outside of the three-point line!</P>
+            <ul>
+                <li><strong>(PG) Point Guard:</strong> Directs the team's offense and distributes the ball from the top of the key.</li>
+                <li><strong>(LW) Left Wing:</strong>  Stretches the defense laterally and provides options for perimeter shooting.</li>
+                <li><strong>(RW) Right Wing:</strong>  Aims to exploit the far side of the defense with shots or drives.</li>
+                <li><strong>(LB) Left Base:</strong>  Positioned to support inside plays and capitalize on baseline drives.</li>
+                <li><strong>(RB) Right Base:</strong>  Helps in balancing the court and can quickly move to score from the corners.</li>
+            </ul>
+
+
+            <div id="imagesblock">
+                <img src="{{ url_for('static', filename='2-3_Zone_Setup_Offen.png') }}" alt="Offensive Setup" class="setup-image img-fluid">
+            </div>
+
+        </section>
+
         <div id="legend">
             <h3>LEGEND</h3>
             <div class="legend-item">
@@ -113,48 +70,34 @@
                 Offensive Player
             </div>
         </div>
-        </section>
-
-        <!-- Offensive Setup Section -->
-        <section id="offensive-setup" class="setup-section">
-            <h2>Offensive Setup</h2>
-            <p>Now let’s add 5 offensive players, we can start with one of the most common offensive setups, with five players on the outside of the three-point line!</p>
-            <img src="{{ url_for('static', filename='2-3_Zone_Setup_Offen.png') }}" alt="Offensive Setup" class="setup-image img-fluid">
-        </section>
-
-        <!-- Buttons -->
-        <div>
-            <button id="previous-button" class="btn btn-secondary">Previous</button>
-            <button id="next-button" class="btn btn-primary">Next</button>
-        </div>
-
     </div>
 {% endblock %}
 
 {% block script %}
     <script>
         $(document).ready(function() {
-            var currentSection = "#two-three-zone-setup";
+            function displaySection() {
+                var hash = window.location.hash || '#two-three-zone-setup';
+                $('.setup-section').hide();
+                $(hash).show();  // Show the section depending on the URL hash
+            }
 
+            // Call displaySection on hash change and on page load
+            $(window).on('hashchange', displaySection);
+            displaySection();
+
+            // Handling the Next button click to toggle images
             $('#next-button').click(function() {
-                if (currentSection === "#two-three-zone-setup") {
-                    $(currentSection).removeClass('active');
-                    currentSection = "#offensive-setup";
-                    $(currentSection).addClass('active');
-                    $('#next-button').text('Next');
-                    $('#previous-button').show();
+                var firstImage = $('#first-image');
+                var secondImage = $('#second-image');
+                if (firstImage.is(':visible')) {
+                    firstImage.hide();
+                    secondImage.show();
+                    $(this).text('Back');  // Change button text to 'Back'
                 } else {
-                    window.location.href = "{{ url_for('lesson') }}";
-                }
-            });
-
-            $('#previous-button').click(function() {
-                if (currentSection === "#offensive-setup") {
-                    $(currentSection).removeClass('active');
-                    currentSection = "#two-three-zone-setup";
-                    $(currentSection).addClass('active');
-                    $('#next-button').text('Next');
-                    $('#previous-button').hide();
+                    secondImage.hide();
+                    firstImage.show();
+                    $(this).text('Next');  // Change button text back to 'Next'
                 }
             });
         });
