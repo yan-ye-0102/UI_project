@@ -23,6 +23,9 @@ $(document).ready(function () {
         var imageUrl = '/static/pass_to_player_' + playerNumber + '.png';
         // Swap out the image with the updated one
         $('#basketball-court').attr('src', imageUrl);
+        var popup = document.getElementById("myPopup" + playerNumber);
+        popup.innerHTML = description
+        popup.classList.toggle("show");
     });
 
 
@@ -33,18 +36,23 @@ $(document).ready(function () {
 
     $('.player-button').click(function () {
         var playerNumber = $(this).attr('id').split('-')[1];
+        popup = $("#myPopup" + playerNumber)
+        if ($(popup).hasClass("show")) {
 
-        // Increment the click count for the clicked player if it hasn't reached the maximum required clicks
-        if (playerClicks[playerNumber] < requiredClicksPerPlayer) {
-            playerClicks[playerNumber]++;
+
+            // Increment the click count for the clicked player if it hasn't reached the maximum required clicks
+            if (playerClicks[playerNumber] < requiredClicksPerPlayer) {
+                playerClicks[playerNumber]++;
+            }
+
+            // Update description and image
+            $('#player-description').text(descriptions[playerNumber]);
+            $('#basketball-court').attr('src', '/static/pass_to_player_' + playerNumber + '.png');
+            var popup = $("#myPopup" + playerNumber);
+            // Update the progress bar
+
+            updateProgressBar();
         }
-
-        // Update description and image
-        $('#player-description').text(descriptions[playerNumber]);
-        $('#basketball-court').attr('src', '/static/pass_to_player_' + playerNumber + '.png');
-
-        // Update the progress bar
-        updateProgressBar();
     });
 
     var $button = $('<button>', {
