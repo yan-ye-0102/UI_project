@@ -28,13 +28,21 @@
             background-color: #0056b3; /* Darker blue on hover for visual feedback */
         }
 
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            width: 100%;
+            margin-top: -20px;
+        }
+
 
     </style>
     <script src="{{ url_for('static', filename='basketball.js') }}"></script>
 {% endblock %}
 
 {% block content %}
-    <div class="lesson-container">
+    <div class="setup-container">
         <!-- 2-3 Zone Setup Section -->
         <section id="two-three-zone-setup" class="setup-section">
             <h2>Let’s start with the basics: 2-3 Zone Setup</h2>
@@ -49,10 +57,20 @@
                     <li>The middle player plays in front of the basket protecting the paint and being vigilant defending against cuts, post-ups, and rebounds</li>
                 </ul>
             </ul>
-            <div id="imagesblock" style="position: relative;">
-                <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen.png') }}" alt="2-3 Zone Setup" class="setup-image img-fluid" id="first-image">
-                <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen_2.png') }}" alt="2-3 Zone Setup 2" class="setup-image img-fluid" id="second-image" style="display: none;">
-                <button id="next-button" style="position: absolute; right: 0; bottom: 0;">Next</button>
+
+            <div class="content-container">
+                <div id="legend">
+                    <h3>LEGEND</h3>
+                    <p><img src="static/red_person.png" alt="Offensive Player" class="offensive-player-img"> Offensive Player</p>
+                    <p><img src="static/green_person.png" alt="Defensive Player" class="defensive-player-img"> Defensive Player</p>
+                    <p><img src="static/previous_person.png" alt="Previous Player" class="previous-player-img"> Previous Position</p>
+                    <p><img src="static/player_movement.png" alt="Player Movement" class="player-movement-img"> Previous Movement</p>
+                </div>
+                <div id="imagesblock" style="position: relative;">
+                    <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen.png') }}" alt="2-3 Zone Setup" class="setup-image img-fluid" id="first-image">
+                    <img src="{{ url_for('static', filename='2-3_Zone_Setup_Defen_2.png') }}" alt="2-3 Zone Setup 2" class="setup-image img-fluid" id="second-image" style="display: none;">
+                    <button id="next-button" style="position: absolute; right: 0; bottom: 0;">Next</button>
+                </div>
             </div>
 
 
@@ -61,7 +79,7 @@
         <!-- Offensive Setup Section -->
         <section id="offensive-setup" class="setup-section">
             <h2>Offensive Setup</h2>
-            <P>Now let’s add 5 offensive players, we can start with one of the most common offensive setups, with five players on the outside of the three-point line!</P>
+            Now let’s add 5 offensive players, we can start with one of the most common offensive setups, with five players on the outside of the three-point line!
             <ul>
                 <li><strong>(PG) Point Guard:</strong> Directs the team's offense and distributes the ball from the top of the key.</li>
                 <li><strong>(LW) Left Wing:</strong>  Stretches the defense laterally and provides options for perimeter shooting.</li>
@@ -70,24 +88,20 @@
                 <li><strong>(RB) Right Base:</strong>  Helps in balancing the court and can quickly move to score from the corners.</li>
             </ul>
 
-
-            <div id="imagesblock">
-                <img src="{{ url_for('static', filename='2-3_Zone_Setup_Offen.png') }}" alt="Offensive Setup" class="setup-image img-fluid">
+            <div class="content-container">
+                <div id="legend">
+                    <h3>LEGEND</h3>
+                    <p><img src="static/red_person.png" alt="Offensive Player" class="offensive-player-img"> Offensive Player</p>
+                    <p><img src="static/green_person.png" alt="Defensive Player" class="defensive-player-img"> Defensive Player</p>
+                    <p><img src="static/previous_person.png" alt="Previous Player" class="previous-player-img"> Previous Position</p>
+                    <p><img src="static/player_movement.png" alt="Player Movement" class="player-movement-img"> Previous Movement</p>
+                </div>
+                <div id="imagesblock" style="position: relative;">
+                    <img src="{{ url_for('static', filename='2-3_Zone_Setup_Offen.png') }}" alt="Offensive Setup" class="setup-image img-fluid">
+                </div>
             </div>
-
         </section>
 
-        <div id="legend">
-            <h3>LEGEND</h3>
-            <div class="legend-item">
-                <span class="legend-color defensive-player-image"></span>
-                Defensive Player
-            </div>
-            <div class="legend-item">
-                <span class="legend-color offensive-player-image"></span>
-                Offensive Player
-            </div>
-        </div>
     </div>
 {% endblock %}
 

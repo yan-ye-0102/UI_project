@@ -80,9 +80,9 @@
     font-size: 20px; /* Adjust font size as needed */
 }
 
-#legend {
-    margin-top: 10px;
-}
+/*#legend {*/
+/*    margin-top: 10px;*/
+/*}*/
 
 #court-container {
     display: flex;
@@ -92,6 +92,10 @@
     flex: 0 0 auto; /* Ensure the legend doesn't grow or shrink */
     margin-right: 20px; /* Adjust the spacing between the legend and the basketball court */
     margin-top: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #212529;
 }
 
 #basketball-court {
@@ -139,13 +143,6 @@
     color: #000000 !important; /* Force text color to black */
 }
 
-.setup-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 20px;
-}
-
 .setup-section {
     display: none;
 }
@@ -157,48 +154,26 @@
 
 .setup-image {
     display: block;
-    max-width: 400px;
+    max-width: 66%;
     height: auto;
     margin-bottom: 20px;
 }
 
 
-#legend {
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    color: #212529;
-}
+/*#legend {*/
+/*    margin-top: 0px;*/
+/*    padding: 10px;*/
+/*    border-radius: 5px;*/
+/*    font-size: 14px;*/
+/*    color: #212529;*/
+/*}*/
 
-.legend-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.legend-color {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    margin-right: 10px;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-
-.offensive-player {
-    background-color: red;
-}
-
-.defensive-player {
-    background-color: green;
-}
 
 #imagesblock {
-    display: flex; /* Ensure images are displayed in a row */
+    display: grid;/* Ensure images are displayed in a row */
     justify-content: center; /* Center align images horizontally */
     align-items: flex-start; /* Align images to the top */
     margin-right: 10px;
+    margin-top: 20px;
 }
 
