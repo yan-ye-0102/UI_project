@@ -47,6 +47,15 @@ $(document).ready(function () {
         updateProgressBar();
     });
 
+    var $button = $('<button>', {
+        text: 'Next',
+        id: 'next-button',   // Set button ID
+        class: "btn btn-primary",
+        click: function () { // Click event handler
+            window.location.href = "/connection";
+        }
+    });
+
     function updateProgressBar() {
         var totalClicksMade = 0;
 
@@ -65,7 +74,7 @@ $(document).ready(function () {
 
         console.log(totalClicksMade);
         if (totalClicksMade == 10) {
-            window.location.href = "/connection";
+            $("#showNext").append($button);
         }
     }
 

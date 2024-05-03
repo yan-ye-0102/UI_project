@@ -61,44 +61,62 @@
   <p> As the ball moves around the offense, the defensive position of each player must change. Click on an offensive
     player (red) to give them the ball, we will then show you how the defense should react, and why!</p>
   <h3>You can click on the red players and see what happens :)</h1>
-  <p id="descrip">Description of Defense:</p>
-  <div id="player-description"></div>
-  <div id="court-container">
-    <div id="legend">
-      <h3>LEGEND</h3>
-      <p><img src="static/red_person.png" alt="Offensive Player" class="offensive-player-img"> Offensive Player</p>
-      <p><img src="static/green_person.png" alt="Defensive Player" class="defensive-player-img"> Defensive Player</p>
-      <p><img src="static/previous_person.png" alt="Previous Player" class="previous-player-img"> Previous Position</p>
-      <p><img src="static/player_movement.png" alt="Player Movement" class="player-movement-img"> Previous Movement</p>
-    </div>
-    <div id="image-container" style="position: relative;">
-      
-      <img src='{{ url_for("static", filename="lesson_start.png") }}' alt="Basketball Court" id="basketball-court">
-      <div class="clickable-area player-button" style="position: absolute; top: 73%; left: 1%; width: 10%; height: 15%;"
-        data-player="1" id="player-1-button"></div>
-      <div class="clickable-area player-button"
-        style="position: absolute; top: 26%; left: 12%; width: 10%; height: 15%;" data-player="1" id="player-2-button">
+    <p id="descrip">Description of Defense:</p>
+    <div id="player-description"></div>
+    <div id="court-container">
+      <div id="legend">
+        <h3>LEGEND</h3>
+        <p><img src="static/red_person.png" alt="Offensive Player" class="offensive-player-img"> Offensive Player</p>
+        <p><img src="static/green_person.png" alt="Defensive Player" class="defensive-player-img"> Defensive Player</p>
+        <p><img src="static/previous_person.png" alt="Previous Player" class="previous-player-img"> Previous Position
+        </p>
+        <p><img src="static/player_movement.png" alt="Player Movement" class="player-movement-img"> Previous Movement
+        </p>
       </div>
-      <div class="clickable-area player-button"
-        style="position: absolute; top: 15%; left: 45%; width: 10%; height: 15%;" data-player="1" id="player-3-button">
-      </div>
-      <div class="clickable-area player-button"
-        style="position: absolute; top: 26%; left: 78%; width: 10%; height: 15%;" data-player="1" id="player-4-button">
-      </div>
-      <div class="clickable-area player-button"
-        style="position: absolute; top: 73%; left: 89%; width: 10%; height: 15%;" data-player="1" id="player-5-button">
-      </div>
-    </div>
+      <div id="image-container" style="position: relative;">
 
-  </div>
-  <div class="progress-bar-container">
-    <div>Click Each Player At Least 2 Times to Complete the Lesson</div>
-    <div class="progress-bar">
-        <div class="progress-bar-fill" style="width: 16.66%;"></div> <!-- Adjust the width based on the current progress -->
+        <img src='{{ url_for("static", filename="lesson_start.png") }}' alt="Basketball Court" id="basketball-court">
+        <div class="clickable-area player-button"
+          style="position: absolute; top: 73%; left: 1%; width: 10%; height: 15%;" data-player="1" id="player-1-button">
+        </div>
+        <div class="clickable-area player-button"
+          style="position: absolute; top: 26%; left: 12%; width: 10%; height: 15%;" data-player="1"
+          id="player-2-button">
+        </div>
+        <div class="clickable-area player-button"
+          style="position: absolute; top: 15%; left: 45%; width: 10%; height: 15%;" data-player="1"
+          id="player-3-button">
+        </div>
+        <div class="clickable-area player-button"
+          style="position: absolute; top: 26%; left: 78%; width: 10%; height: 15%;" data-player="1"
+          id="player-4-button">
+        </div>
+        <div class="clickable-area player-button"
+          style="position: absolute; top: 73%; left: 89%; width: 10%; height: 15%;" data-player="1"
+          id="player-5-button">
+        </div>
+      </div>
+
     </div>
-    <div class="progress-bar-steps">
+    <div class="progress-bar-container">
+      <div>Click Each Player At Least 2 Times to Complete the Lesson</div>
+      <div class="progress-bar">
+        <div class="progress-bar-fill" style="width: 16.66%;"></div>
+        <!-- Adjust the width based on the current progress -->
+      </div>
+      <div class="progress-bar-steps">
+      </div>
+      <div class="row"> &nbsp </div>
+      <div class="row">
+        <div class="col-6">
+        </div>
+        <div class="col-2" id="showNext">
+        </div>
+        <div class="col-4" id="showNext">
+        </div>
+      </div>
+
     </div>
-  </div>
 
 </div>
 </div>
