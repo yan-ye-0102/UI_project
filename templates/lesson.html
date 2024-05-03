@@ -140,11 +140,14 @@
         </p>
       </div>
       <div id="image-container" style="position: relative;">
-
+        <div class="popup">
+          <span class="popuptext" id="startscreen">Try click the Red Players!</span>
+        </div>
         <img src='{{ url_for("static", filename="lesson_start.png") }}' alt="Basketball Court" id="basketball-court">
+
         <div class="clickable-area player-button popup"
           style="position: absolute; top: 73%; left: 1%; width: 10%; height: 15%;" data-player="1" id="player-1-button">
-          <span class="popuptext" id="myPopup1"></span>
+          <span class="popuptext" id="myPopup1">Try Click Me!</span>
         </div>
         <div class="popup clickable-area player-button"
           style="position: absolute; top: 26%; left: 12%; width: 10%; height: 15%;" data-player="1"

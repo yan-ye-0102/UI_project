@@ -1,4 +1,13 @@
+function sleep(ms) {
+    const start = Date.now();
+    while (Date.now() - start < ms) { }
+}
 $(document).ready(function () {
+    var startscreen = document.getElementById("startscreen");
+
+    // Update the text below the player buttons with the description
+
+    startscreen.classList.toggle("show");
     // Define descriptions for each player
     var descriptions = {
         '1': 'When the leftmost offensive player has the ball, the left wing defender should step out to apply pressure, while the point guard shifts slightly towards the left to provide support. The other defenders in the zone should adjust their positions to maintain coverage and prevent easy passing lanes to the interior.',
@@ -10,6 +19,7 @@ $(document).ready(function () {
 
     // Function to handle when a player button is clicked
     $('.player-button').click(function () {
+        startscreen.classList.remove("show");
         // Get the player number from the clicked button's ID
         var playerNumber = $(this).attr('id').split('-')[1]; // Assuming IDs are in the format "playerX-button"
 
@@ -19,11 +29,20 @@ $(document).ready(function () {
         var imageUrl = '/static/pass_to_player_' + playerNumber + '.png';
         // Swap out the image with the updated one
         $('#basketball-court').attr('src', imageUrl);
-        var popup = document.getElementById("myPopup" + playerNumber);
-        
+        popup = document.getElementById("myPopup"+playerNumber)
+
         // Update the text below the player buttons with the description
         popup.innerHTML = description
         popup.classList.toggle("show");
+        if ($(popup).hasClass("show")) {
+            for (let index = 1; index < 6; index++) {
+                if (index != playerNumber) {
+                    let popup_player = $("#myPopup" + index)
+                    popup_player.removeClass("show")
+                }
+
+            }
+        }
     });
 
 
