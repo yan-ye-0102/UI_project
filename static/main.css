@@ -195,10 +195,6 @@
     background-color: green;
 }
 
-#next-button, #previous-button {
-    margin-top: 20px;
-    margin-right: 10px;
-}
 #imagesblock {
     display: flex; /* Ensure images are displayed in a row */
     justify-content: center; /* Center align images horizontally */
@@ -206,19 +202,3 @@
     margin-right: 10px;
 }
 
-#next-button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 8px 16px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#next-button:hover {
-    background-color: #0056b3; /* Darker blue on hover for visual feedback */
-}
