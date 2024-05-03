@@ -15,15 +15,13 @@ $(document).ready(function () {
 
         // Get the corresponding description for the player
         var description = descriptions[playerNumber];
-
-        // Update the text below the player buttons with the description
-        $('#player-description').text(description);
-
         // Construct the filename for the corresponding image
         var imageUrl = '/static/pass_to_player_' + playerNumber + '.png';
         // Swap out the image with the updated one
         $('#basketball-court').attr('src', imageUrl);
         var popup = document.getElementById("myPopup" + playerNumber);
+        
+        // Update the text below the player buttons with the description
         popup.innerHTML = description
         popup.classList.toggle("show");
     });
